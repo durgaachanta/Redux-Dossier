@@ -1,0 +1,64 @@
+// =============================================================================
+// THEME - MAIN MAINFEST - nm-cx
+// =============================================================================
+
+//
+// Here, we import all sub-manifests that comprise the nm theme.
+//
+
+// Declare theme name
+$theme-name: "nm-cx";
+
+// Import theme utils
+@import "../core/theme-utils";
+
+// Import univeral theme vars
+@import "./universal";
+
+// Import sub-manifests
+@import "./nm-cx/fonts";
+@import "./nm-cx/icons";
+@import "./nm-cx/settings";
+@import "./nm-cx/components";
+
+// Site-wide focus color on markup elements to override browser defaults as per
+// https://learnvest.atlassian.net/browse/UITK-733
+// Updated to address ticket https://learnvest.atlassian.net/browse/UITK-810
+*:focus {
+	outline: 1px solid $global-focus-color;
+	outline: auto -webkit-focus-ring-color;
+	outline-color: $global-focus-color;
+}
+
+// No outline for mouse users; keyboard/screen reader users continue unaffected
+*:active {
+	outline: 0;
+}
+
+// Hack used to target only IE 10+
+@media all and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+	// Remove the focus ouline from all elements in IE
+	*:focus {
+		outline: 0;
+	}
+
+	// Add the focus ouline to these specfic elements in IE
+	a,
+	button,
+	input,
+	optgroup,
+	select,
+	textarea,
+	[type="button"],
+	[type="reset"],
+	[type="submit"],
+	[type="checkbox"],
+	[type="radio"],
+	[type="search"] {
+		&:focus {
+			outline: 1px solid $global-focus-color;
+			outline: auto -webkit-focus-ring-color;
+			outline-color: $global-focus-color;
+		}
+	}
+}
